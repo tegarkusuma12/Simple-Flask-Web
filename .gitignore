@@ -1,0 +1,10 @@
+# Folder virtual environment
+venv/
+
+# File Python cache
+__pycache__/
+*.pyc
+
+# File konfigurasi lokal
+.env
+
