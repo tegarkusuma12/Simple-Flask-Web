@@ -1,9 +1,24 @@
-{%extends'base.html'%}
+{% extends 'base.html' %}
 
-{%blockheader%}
-    <h2>{%blocktitle%}About{%endblocktitle%}</h2>
-{%endblockheader%}
+{% block title %}About{% endblock title %}
 
-{%blockcontent%}
-    <p>Thisisamessageboardforfriendlymessages.</p>
-{%endblockcontent%}
+{% block header %}
+  <h2>About This Message Board</h2>
+{% endblock header %}
+
+{% block content %}
+  <p>Welcome to <strong>Message Board</strong> — a simple web app built with Flask for sharing friendly messages.</p>
+
+  <p>This project was created to explore:</p>
+  <div class="list-block">
+    <div>🧠 Flask routing and templates</div>
+    <div>💾 SQLite database integration</div>
+    <div>🧱 Modular HTML structure with base layout</div>
+    <div>⚙️ Environment-based configuration using .env</div>
+  </div>
+
+
+  <p>Feel free to post a message, browse others, or dive into the code to learn how it works.</p>
+
+  <p><em>Built by Tegar — persistent, detail-oriented, and always curious.</em></p>
+{% endblock content %}
