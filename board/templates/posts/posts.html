@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>All Posts</h1>
+  <ul>
+    {% for post in posts %}
+      <li><strong>{{ post.author }}</strong>: {{ post.message }} <em>({{ post.created }})</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
