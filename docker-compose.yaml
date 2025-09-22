@@ -1,20 +1,35 @@
 services:
   psql-db:
-    image: postgres:14-bookworm
+    image: "postgres:14-bookworm"
     hostname: psql-db
     environment:
       - POSTGRES_PASSWORD=P4ssw0rd
       - POSTGRES_USER=admin
       - POSTGRES_DB=flask_db
+      - POSTGRES_HOST_AUTH_METHOD=password
+    restart: unless-stopped
+    volumes:
+      - ./psql-db.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
 
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
     depends_on:
-      - psql-db
+      psql-db:
+        condition: service_started
+    build: .
+    working_dir: /flask
+    ports:
+      - "8080:5000"
+    networks:
+      - app-network
+    # command: "python board/init_db.py"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
     networks:
       - app-network
 
