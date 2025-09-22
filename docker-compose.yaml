@@ -1,0 +1,22 @@
+services:
+  psql-db:
+    image: postgres:14-bookworm
+    hostname: psql-db
+    environment:
+      - POSTGRES_PASSWORD=P4ssw0rd
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=flask_db
+    networks:
+      - app-network
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - psql-db
+    networks:
+      - app-network
+
+networks:
+  app-network:
